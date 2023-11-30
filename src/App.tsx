@@ -2,10 +2,10 @@ import { useState } from "react"
 import "./style.css"
 
 export default function App(){
-  const[newItem,setNewItem] = useState("")
-  const [todos,setTodos] = useState([])
+  const[newItem,setNewItem] = useState<string>("")
+  const [todos,setTodos] = useState<Todo[]>([])
 
-  function handleSubmit(e){
+  const handleSubmit = (e:React.FormEvent<HTMLFormElement>) =>{
     e.preventDefault()
     
     setTodos(currentTodos =>{
@@ -31,6 +31,7 @@ export default function App(){
       </form>
       <h1 className="header">Todo List</h1>
       <ul className="list">
+
         {todos.map(todo => {
           return(
             <li key={todo.id}>
@@ -45,4 +46,10 @@ export default function App(){
       </ul>
     </>
   )
+}
+
+interface Todo {
+  id: string,
+  title: string,
+  completed: boolean
 }
