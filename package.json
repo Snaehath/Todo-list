@@ -6,7 +6,7 @@
   "homepage": "https://Snaehath.github.io/Todo-list",
   "scripts": {
     "predeploy": "yarn run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d build",
     "dev": "vite",
     "start": "vite",
     "build": "tsc && vite build",
