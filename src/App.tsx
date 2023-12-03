@@ -1,10 +1,19 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./style.css"
 import NewTodoForm from "./new-todo-forms"
 import NewTodoList from "./new-todo-list"
 
 export default function App(){
-  const [todos,setTodos] = useState<Todo[]>([])
+  const [todos,setTodos] = useState<Todo[]>(() =>{
+    const localValue = localStorage.getItem('Items')
+    if (localValue == null) return []
+
+    return JSON.parse(localValue)
+  })
+
+  useEffect(() => {
+    localStorage.setItem('Items',JSON.stringify(todos))
+  },[todos])
 
   function addTodo(title:string) {
     setTodos(currentTodos =>{
